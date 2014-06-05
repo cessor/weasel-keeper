@@ -72,7 +72,7 @@ namespace WeaselKeeper
         }
 
         // Read in blacklist from the outside so that you don't have to recompile shit  
-        private static readonly IEnumerable<string> Blacklist = new[] { "List", "var", "Add" };
+        private static readonly IEnumerable<string> Blacklist = new[] { "List", "var", "Add", "Length" };
 
         private static bool ShouldNotBeReplaced(string identifierName)
         {
