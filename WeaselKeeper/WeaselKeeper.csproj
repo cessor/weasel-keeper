@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Analysis.cs" />
     <Compile Include="Call.cs" />
+    <Compile Include="IdentifierSubstitutions.cs" />
     <Compile Include="Manipulation.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="Snippet.cs" />
