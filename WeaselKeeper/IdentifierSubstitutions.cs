@@ -17,6 +17,14 @@ namespace WeaselKeeper
             return _replacements.ContainsKey(identifier);
         }
 
+        public void Each(Action<string, string> action)
+        {
+            foreach (var replacement in _replacements)
+            {
+                action(replacement.Key, replacement.Value);
+            }
+        }
+
         public string For(string identifier)
         {
             return _replacements[identifier];

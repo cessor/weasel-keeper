@@ -6,7 +6,8 @@ namespace WeaselKeeper
 {
     internal class SourceCode
     {
-        private const string Code = @"public int CustomerPoints(DateTime due, DateTime returned, int customerPoints)
+        private const string Code = @"
+        public int CustomerPoints(DateTime due, DateTime returned, int customerPoints)
         {
             const int fine = 10;
             const int reward = 5;

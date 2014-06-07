@@ -30,6 +30,7 @@ namespace WeaselKeeper
         private static void Main(string[] commandLine)
         {
 #if DEBUG
+            commandLine = new[] {"--abbrev"};
             Snippet snippet = SourceCode.TestCode;
 #else 
                 var snippet = SourceCode.FromStdin();
