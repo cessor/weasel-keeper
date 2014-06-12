@@ -19,7 +19,8 @@ namespace WeaselKeeper.Identifiers
 
         public string Abbreviate(string identifier, int length)
         {
-            return String.Concat(Enumerable.Range(0, length).Select(_ => RandomCharacter(identifier).ToString().ToLower()));
+            return
+                String.Concat(Enumerable.Range(0, length).Select(_ => RandomCharacter(identifier).ToString().ToLower()));
         }
     }
 }

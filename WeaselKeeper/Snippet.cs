@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
@@ -56,6 +57,11 @@ namespace WeaselKeeper
                 (MethodDeclarationSyntax)
                     tokens.First(token => token.Parent.CSharpKind() == SyntaxKind.MethodDeclaration).Parent;
             return methodDeclaration;
+        }
+
+        public CompilationUnitSyntax RenameIdentifiers(Func<SyntaxToken, SyntaxToken> rename)
+        {
+            return Root.ReplaceTokens(Identifiers, (a, b) => rename(a));
         }
     }
 }

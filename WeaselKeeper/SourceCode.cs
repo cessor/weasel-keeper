@@ -1,6 +1,5 @@
 using System;
 using System.Text;
-using WeaselKeeper;
 
 namespace WeaselKeeper
 {
@@ -25,7 +24,7 @@ namespace WeaselKeeper
         return 0;
     }
     return customerPoints;
-}"; 
+}";
 
         public static Snippet TestCode
         {

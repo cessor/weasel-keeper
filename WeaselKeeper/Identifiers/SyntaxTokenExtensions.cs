@@ -3,7 +3,7 @@ using Microsoft.CodeAnalysis.CSharp;
 
 namespace WeaselKeeper.Identifiers
 {
-    public static  class SyntaxTokenExtensions
+    public static class SyntaxTokenExtensions
     {
         public static SyntaxToken RenameWith(this SyntaxToken token, string newName)
         {

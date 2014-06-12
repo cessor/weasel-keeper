@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using WeaselKeeper;
 using WeaselKeeper.Identifiers;
 
 namespace WeaselKeeper
@@ -15,7 +14,7 @@ namespace WeaselKeeper
         public static Options ConfigureOptions()
         {
             var options = new Options();
-            
+
             var condition = new Condition(new Random(), Blacklist.ReadFromFile());
             options
                 .Add("--loc", Report.CountLines)
@@ -35,7 +34,7 @@ namespace WeaselKeeper
         private static void Main(string[] commandLine)
         {
 #if DEBUG
-            commandLine = new[] {"--normal", "--map"};
+            commandLine = new[] {"--abbrev", "--map"};
             Snippet snippet = SourceCode.TestCode;
 #else 
                 var snippet = SourceCode.FromStdin();

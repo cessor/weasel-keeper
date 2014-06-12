@@ -4,8 +4,6 @@ using Microsoft.CodeAnalysis;
 
 namespace WeaselKeeper.Identifiers
 {
-    public delegate string Replace(string identifier);
-
     internal class ReplacementMap
     {
         private readonly Blacklist _blacklist;
@@ -16,6 +14,11 @@ namespace WeaselKeeper.Identifiers
         {
             _blacklist = blacklist;
             _replace = replace;
+        }
+
+        public Dictionary<string, string> Replacements
+        {
+            get { return _replacements; }
         }
 
         public SyntaxToken Replace(SyntaxToken token)

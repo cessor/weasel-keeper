@@ -3,7 +3,7 @@ namespace WeaselKeeper.Identifiers
     internal class Normal : IReplace
     {
         /// <summary>
-        ///  Doesn't rename. Polymorphism, bitches.
+        ///     Doesn't rename. Polymorphism, bitches.
         /// </summary>
         /// <param name="identifier"></param>
         /// <returns></returns>
