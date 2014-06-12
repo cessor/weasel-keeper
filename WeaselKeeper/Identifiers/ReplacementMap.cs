@@ -4,6 +4,8 @@ using Microsoft.CodeAnalysis;
 
 namespace WeaselKeeper.Identifiers
 {
+    // The Replacement map is called map as in landscape.
+    // Parts of it are later used to create the documentation overview
     internal class ReplacementMap
     {
         private readonly Blacklist _blacklist;

@@ -1,16 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using WeaselKeeper.Identifiers;
 
 namespace WeaselKeeper
 {
     internal class Program
     {
+
         // file:///C:/Users/Johannes/Downloads/Getting%20Started%20-%20Syntax%20Transformation%20(CSharp).pdf
         // http://www.codeplex.com/Download?ProjectName=roslyn&DownloadId=822458
         // http://blogs.msdn.com/b/csharpfaq/archive/2011/11/03/using-the-roslyn-syntax-api.aspx
-
         public static Options ConfigureOptions()
         {
             var options = new Options();
@@ -28,6 +29,15 @@ namespace WeaselKeeper
                 .Add("--single", condition.Single)
                 .Add("--abbrev", condition.Abbrev)
                 .Add("--help", t => Help.Print(options));
+
+                options["--map"].Requires(new [] { "--normal","--single", "--abbrev"});
+            
+
+//            if (_map == null)
+//            {
+//                throw new InvalidOperationException("In order to show a replacement map, please generate a snippet first. --map requires one of these flags --normal, --abbrev, --single");
+//            }
+
             return options;
         }
 

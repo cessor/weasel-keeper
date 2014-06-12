@@ -43,10 +43,18 @@ namespace WeaselKeeper
             _map = new ReplacementMap(_blacklist, identifierReplacement);
             CompilationUnitSyntax codeForWithinFactor = snippet.RenameIdentifiers(_map.Replace);
             Console.WriteLine(codeForWithinFactor);
+
+            Console.WriteLine("Diagnostics:");
+            Console.WriteLine("------------");
+
+            new SanityCheck().CheckTree(codeForWithinFactor, snippet);
+
         }
 
         public void Map(Snippet snippet)
         {
+            Console.WriteLine("Map:");
+            Console.WriteLine("----");
             _map.Each((key, value) => Console.WriteLine("{0}: {1}", key, value));
         }
     }

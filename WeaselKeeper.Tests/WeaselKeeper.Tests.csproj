@@ -45,6 +45,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OptionParserTests.cs" />
     <Compile Include="TestsHere.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
