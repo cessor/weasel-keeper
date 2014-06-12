@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using WeaselKeeper;
+using WeaselKeeper.Identifiers;
 
 namespace WeaselKeeper
 {
@@ -10,19 +12,22 @@ namespace WeaselKeeper
         // http://www.codeplex.com/Download?ProjectName=roslyn&DownloadId=822458
         // http://blogs.msdn.com/b/csharpfaq/archive/2011/11/03/using-the-roslyn-syntax-api.aspx
 
-        private static Options ConfigureOptions()
+        public static Options ConfigureOptions()
         {
             var options = new Options();
+            
+            var condition = new Condition(new Random(), Blacklist.ReadFromFile());
             options
-                .Add("--loc", Analysis.CountLines)
-                .Add("--name", Analysis.MethodName)
-                .Add("--count-tokens", Analysis.CountTokens)
-                .Add("--count-identifiers", Analysis.CountIdenfifiers)
-                .Add("--list-tokens", Analysis.ListTokens)
-                .Add("--list-identifiers", Analysis.ListIdentifiers)
-                .Add("--normal", Manipulation.Normal)
-                .Add("--single", Manipulation.Single)
-                .Add("--abbrev", Manipulation.Abbrev)
+                .Add("--loc", Report.CountLines)
+                .Add("--name", Report.MethodName)
+                .Add("--count-tokens", Report.CountTokens)
+                .Add("--count-identifiers", Report.CountIdenfifiers)
+                .Add("--list-tokens", Report.ListTokens)
+                .Add("--list-identifiers", Report.ListIdentifiers)
+                .Add("--normal", condition.Normal)
+                .Add("--map", condition.Map)
+                .Add("--single", condition.Single)
+                .Add("--abbrev", condition.Abbrev)
                 .Add("--help", t => Help.Print(options));
             return options;
         }
@@ -30,7 +35,7 @@ namespace WeaselKeeper
         private static void Main(string[] commandLine)
         {
 #if DEBUG
-            commandLine = new[] {"--abbrev"};
+            commandLine = new[] {"--normal", "--map"};
             Snippet snippet = SourceCode.TestCode;
 #else 
                 var snippet = SourceCode.FromStdin();

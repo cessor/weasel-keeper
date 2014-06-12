@@ -5,7 +5,7 @@ using Microsoft.CodeAnalysis;
 
 namespace WeaselKeeper
 {
-    internal class Analysis
+    internal class Report
     {
         public static void MethodName(Snippet snippet)
         {
