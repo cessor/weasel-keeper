@@ -13,7 +13,8 @@ namespace WeaselKeeper
         private readonly Blacklist _blacklist;
         private readonly Random _random;
         private ReplacementMap _map;
-
+        private CompilationUnitSyntax _replacedCode;
+        
         public Condition(Random random, Blacklist blacklist)
         {
             _random = random;
@@ -41,25 +42,32 @@ namespace WeaselKeeper
             // The map calls this method to create replacements, but also tracks for collisions or
             // whether or not an identifier should acutlly be replaced
             _map = new ReplacementMap(_blacklist, identifierReplacement);
-            CompilationUnitSyntax codeForWithinFactor = snippet.RenameIdentifiers(_map.Replace);
-            Console.WriteLine(codeForWithinFactor);
-
-            Console.WriteLine("Diagnostics:");
-            Console.WriteLine("------------");
-
-            new SanityCheck().CheckTree(codeForWithinFactor, snippet);
-
+            _replacedCode = snippet.RenameIdentifiers(_map.Replace);
+            Console.WriteLine(_replacedCode);
         }
 
         public void Map(Snippet snippet)
         {
-            Console.WriteLine("Map:");
-            Console.WriteLine("----");
+            "Map".Announce();
             _map.Each((key, value) => Console.WriteLine("{0}: {1}", key, value));
         }
+
+        private SanityCheck _check;
+
+        public void Sane(Snippet snippet)
+        {
+            _check = new SanityCheck();
+            _check.CheckTree(_replacedCode, snippet);
+        }
+
+        public void Warnings(Snippet snippet)
+        {
+            "Warnings".Announce();
+            
+            foreach (var diagnostic in _check.Warnings())
+            {
+                Console.WriteLine(diagnostic.GetMessage());
+            }
+        }
     }
-
-
-    // CheckTree(newTree, snippet);
-    // ShowReplacementMap();
 }

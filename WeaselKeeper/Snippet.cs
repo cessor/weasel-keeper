@@ -7,6 +7,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace WeaselKeeper
 {
+    // A snippet is a fragment of code, in most cases a the code for a method
     internal class Snippet
     {
         private Snippet(CompilationUnitSyntax root, IEnumerable<SyntaxToken> tokens)
